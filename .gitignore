@@ -1,5 +1,6 @@
 node_modules/
-.npm
+__pycache__/
+*.pyc
 .env
 .env.local
 .env.*.local
@@ -18,3 +19,6 @@ Thumbs.db
 dist/
 build/
 coverage/
+venv/
+.venv/
+env/

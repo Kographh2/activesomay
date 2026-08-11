@@ -1,6 +1,6 @@
 # KOGRAPH ACTIVATOR
 
-Web app responsif untuk aktivasi Alight Motion Premium berbasis package `amprem`.
+Web app responsif untuk aktivasi Alight Motion Premium.
 
 ## Fitur
 
@@ -8,27 +8,23 @@ Web app responsif untuk aktivasi Alight Motion Premium berbasis package `amprem`
 - Verifikasi magic link untuk aktivasi premium
 - UI responsif biru-putih dengan animasi modern
 - Toast notification sebagai pengganti alert
-- Support Vercel deployment
+- Backend Vercel menggunakan Python
 
-## Instalasi
+## Instalasi Lokal (Node.js)
 
 ```bash
 npm install
-```
-
-## Menjalankan Lokal
-
-```bash
 npm start
 ```
 
 Akses di `http://localhost:3000`
 
-## Deployment Vercel
+## Deployment Vercel (Python)
+
+Project ini menggunakan Python runtime di Vercel untuk API endpoints.
 
 ```bash
-npm i -g vercel
-vercel
+vercel --prod
 ```
 
 Atau push ke GitHub dan import di Vercel dashboard.
@@ -37,15 +33,18 @@ Atau push ke GitHub dan import di Vercel dashboard.
 
 ```
 ├── api/
-│   ├── send-link.js
-│   └── verify-link.js
+│   ├── amprem_client.py    # Core logic: AES decryption + HTTP client
+│   ├── health.py           # Health check endpoint
+│   ├── send_link.py        # Vercel serverless function (send)
+│   └── verify_link.py      # Vercel serverless function (verify)
 ├── public/
 │   ├── index.html
 │   ├── style.css
 │   └── app.js
-├── server.js
-├── vercel.json
-├── package.json
+├── server.js               # Express backend untuk lokal
+├── vercel.json             # Vercel routing config
+├── requirements.txt        # Python dependencies
+├── package.json            # Node.js dependencies (lokal)
 ├── .gitignore
 ├── README.md
 └── LICENSE
@@ -53,8 +52,15 @@ Atau push ke GitHub dan import di Vercel dashboard.
 
 ## API
 
+- `GET /api/health` - Health check
 - `POST /api/send-link` - Kirim verifikasi ke email
 - `POST /api/verify-link` - Verifikasi magic link
+
+## Tech Stack
+
+- **Frontend**: HTML5, CSS3, Vanilla JavaScript
+- **Local Backend**: Express.js + amprem
+- **Vercel Backend**: Python 3.9 + pycryptodome + requests
 
 ## License
 

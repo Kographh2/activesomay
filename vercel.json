@@ -2,8 +2,12 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
+      "src": "api/**/*.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "api/**/requirements.txt",
+      "use": "@vercel/python"
     },
     {
       "src": "public/**",
@@ -13,15 +17,15 @@
   "routes": [
     {
       "src": "/api/health",
-      "dest": "/api/health.js"
+      "dest": "/api/health.py"
     },
     {
       "src": "/api/send-link",
-      "dest": "/api/send-link.js"
+      "dest": "/api/send_link.py"
     },
     {
       "src": "/api/verify-link",
-      "dest": "/api/verify-link.js"
+      "dest": "/api/verify_link.py"
     },
     {
       "src": "/(.*)",

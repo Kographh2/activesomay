@@ -20,7 +20,9 @@
     "alight-motion",
     "activator",
     "premium",
-    "kograph"
+    "kograph",
+    "python",
+    "vercel"
   ],
   "author": "KOGRAPH",
   "license": "MIT"

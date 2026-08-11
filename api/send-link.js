@@ -1,4 +1,9 @@
-const AmPrem = require('amprem');
+let AmPrem;
+try {
+  AmPrem = require('amprem');
+} catch (error) {
+  console.error('Failed to load amprem:', error);
+}
 
 function parseBody(req) {
   try {
@@ -39,16 +44,27 @@ module.exports = async function handler(req, res) {
   }
 
   const body = parseBody(req);
+  console.log('send-link body:', JSON.stringify(body));
+  console.log('send-link headers:', JSON.stringify(req.headers));
+
   const { email } = body;
 
   if (!email || !email.includes('@')) {
     return res.status(400).json({
       status: false,
-      message: 'Email tidak valid atau kosong'
+      message: 'Email tidak valid atau kosong',
+      debug: { email: email || '(empty)' }
     });
   }
 
   try {
+    if (!AmPrem) {
+      return res.status(500).json({
+        status: false,
+        message: 'Module amprem tidak dapat dimuat'
+      });
+    }
+
     const response = await withRetry(() => AmPrem.sendLink(email));
 
     if (typeof response === 'string') {
