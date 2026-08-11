@@ -197,7 +197,7 @@ function sendJSON(res, statusCode, obj) {
   res.end(JSON.stringify(obj));
 }
 
-module.exports = async function handler(req, res) {
+async function handler(req, res) {
   const method = req.method || 'GET';
   const url = new URL(req.url || '/', `http://${req.headers.host || 'localhost'}`);
   const path = url.pathname;
@@ -298,8 +298,9 @@ module.exports = async function handler(req, res) {
   }
 
   return sendJSON(res, 404, { status: false, message: 'Not found' });
-};
+}
 
+module.exports = handler;
 module.exports.handler = handler;
 module.exports.sendLink = sendLink;
 module.exports.verifyLink = verifyLink;
