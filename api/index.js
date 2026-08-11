@@ -229,20 +229,31 @@ async function handler(req, res) {
         body = JSON.parse(req.body);
       } else if (req.body && typeof req.body === 'object') {
         body = req.body;
+      } else if (Buffer.isBuffer(req.body)) {
+        body = JSON.parse(req.body.toString('utf8'));
       }
-    } catch {
+    } catch (e) {
+      console.log('[send-link] body parse failed:', e);
       body = {};
     }
 
     const email = (body.email || '').trim();
 
     console.log('[send-link] email:', JSON.stringify(email));
+    console.log('[send-link] body keys:', Object.keys(body));
     console.log('[send-link] body type:', typeof req.body);
+    console.log('[send-link] body preview:', typeof req.body === 'string' ? req.body.slice(0, 200) : 'n/a');
 
     if (!email || !email.includes('@')) {
       return sendJSON(res, 400, {
         status: false,
-        message: 'Email tidak valid atau kosong'
+        message: 'Email tidak valid atau kosong',
+        debug: {
+          email: email || '(empty)',
+          bodyKeys: Object.keys(body),
+          bodyType: typeof req.body,
+          bodyPreview: typeof req.body === 'string' ? req.body.slice(0, 200) : String(req.body).slice(0, 200)
+        }
       });
     }
 
@@ -266,8 +277,11 @@ async function handler(req, res) {
         body = JSON.parse(req.body);
       } else if (req.body && typeof req.body === 'object') {
         body = req.body;
+      } else if (Buffer.isBuffer(req.body)) {
+        body = JSON.parse(req.body.toString('utf8'));
       }
-    } catch {
+    } catch (e) {
+      console.log('[verify-link] body parse failed:', e);
       body = {};
     }
 
@@ -276,11 +290,18 @@ async function handler(req, res) {
 
     console.log('[verify-link] email:', JSON.stringify(email));
     console.log('[verify-link] link:', JSON.stringify(link));
+    console.log('[verify-link] body keys:', Object.keys(body));
 
     if (!email || !link) {
       return sendJSON(res, 400, {
         status: false,
-        message: 'Email dan Magic Link wajib diisi'
+        message: 'Email dan Magic Link wajib diisi',
+        debug: {
+          email: email || '(empty)',
+          link: link || '(empty)',
+          bodyKeys: Object.keys(body),
+          bodyType: typeof req.body
+        }
       });
     }
 

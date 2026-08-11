@@ -111,7 +111,9 @@ document.getElementById('send-form').addEventListener('submit', async (e) => {
       toast.success(data.message || 'Link verifikasi berhasil dikirim ke email.', 6000);
       emailInput.value = '';
     } else {
-      toast.error(data.message || 'Gagal mengirim link.', 5000);
+      const msg = data.message || 'Gagal mengirim link.';
+      const debug = data.debug ? `\nDebug: ${JSON.stringify(data.debug)}` : '';
+      toast.error(msg + debug, 7000);
     }
   } catch (error) {
     toast.error('Kesalahan jaringan: ' + error.message, 5000);
@@ -171,7 +173,9 @@ document.getElementById('verify-form').addEventListener('submit', async (e) => {
       toast.success(message, 7000);
       linkInput.value = '';
     } else {
-      toast.error(data.message || 'Verifikasi gagal. Magic link tidak valid atau kadaluarsa.', 5000);
+      const msg = data.message || 'Verifikasi gagal. Magic link tidak valid atau kadaluarsa.';
+      const debug = data.debug ? `\nDebug: ${JSON.stringify(data.debug)}` : '';
+      toast.error(msg + debug, 7000);
     }
   } catch (error) {
     toast.error('Kesalahan jaringan: ' + error.message, 5000);
