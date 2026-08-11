@@ -13,8 +13,15 @@ module.exports = async function handler(req, res) {
     return res.status(200).end();
   }
 
+  let body = {};
   try {
-    const { email } = req.body || {};
+    body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
+  } catch {
+    body = {};
+  }
+
+  try {
+    const { email } = body;
 
     if (!email || !email.includes('@')) {
       return res.status(400).json({

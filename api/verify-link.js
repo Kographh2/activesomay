@@ -13,8 +13,15 @@ module.exports = async function handler(req, res) {
     return res.status(200).end();
   }
 
+  let body = {};
   try {
-    const { email, link } = req.body || {};
+    body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
+  } catch {
+    body = {};
+  }
+
+  try {
+    const { email, link } = body;
 
     if (!email || !link) {
       return res.status(400).json({
