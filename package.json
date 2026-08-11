@@ -9,7 +9,6 @@
     "build": "echo 'No build step required'"
   },
   "dependencies": {
-    "amprem": "0.0.1",
     "express": "^4.18.2",
     "cors": "^2.8.5"
   },
@@ -20,9 +19,7 @@
     "alight-motion",
     "activator",
     "premium",
-    "kograph",
-    "python",
-    "vercel"
+    "kograph"
   ],
   "author": "KOGRAPH",
   "license": "MIT"
