@@ -33,14 +33,14 @@ Atau push ke GitHub dan import di Vercel dashboard.
 
 ```
 ├── api/
-│   ├── amprem_client.py    # Core logic: AES decryption + HTTP client
-│   ├── health.py           # Health check endpoint
 │   ├── send_link.py        # Vercel serverless function (send)
-│   └── verify_link.py      # Vercel serverless function (verify)
+│   ├── verify_link.py      # Vercel serverless function (verify)
+│   └── health.py           # Health check endpoint
 ├── public/
 │   ├── index.html
 │   ├── style.css
 │   └── app.js
+├── amprem_client.py        # Core logic: AES decryption + HTTP client
 ├── server.js               # Express backend untuk lokal
 ├── vercel.json             # Vercel routing config
 ├── requirements.txt        # Python dependencies

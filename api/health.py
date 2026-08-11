@@ -1,4 +1,6 @@
 import json
+import sys
+sys.path.insert(0, '..')
 
 def handler(request):
     return {
