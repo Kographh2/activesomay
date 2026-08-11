@@ -2,8 +2,10 @@ const https = require('https');
 const crypto = require('crypto');
 const zlib = require('zlib');
 
-const BASE_URL = 'activesomay.vercel.app';
-const FULL_BASE = `https://${BASE_URL}`;
+const APP_BASE_URL = 'activesomay.vercel.app';
+const API_HOST = 'alight-motion-premium.site.je';
+const API_BASE = `https://${API_HOST}`;
+const FULL_BASE = `https://${APP_BASE_URL}`;
 
 const HEADERS = {
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -87,8 +89,7 @@ function decryptAes(keyHex, ivHex, encryptedHex) {
 }
 
 async function getCookie() {
-  const options = {
-    hostname: BASE_URL,
+  const baseOptions = {
     path: '/',
     method: 'GET',
     headers: {
@@ -98,13 +99,22 @@ async function getCookie() {
     timeout: 30000
   };
 
-  const resp = await request(options);
-  if (resp.statusCode !== 200) {
-    throw new Error(`Gagal akses server: HTTP ${resp.statusCode}`);
+  async function tryHost(host) {
+    const options = { ...baseOptions, hostname: host };
+    const resp = await request(options);
+    if (resp.statusCode !== 200) {
+      throw new Error(`Gagal akses server ${host}: HTTP ${resp.statusCode}`);
+    }
+    try {
+      const { key, iv, encrypted } = extractAesParams(resp.text);
+      return decryptAes(key, iv, encrypted);
+    } catch (e) {
+      throw new Error(`Gagal mengekstrak parameter AES dari server ${host}: ${e.message}`);
+    }
   }
 
-  const { key, iv, encrypted } = extractAesParams(resp.text);
-  return decryptAes(key, iv, encrypted);
+  // Always generate cookie from the real API host, not the app host.
+  return await tryHost(API_HOST);
 }
 
 async function fetchAPI(path, cookie, method, data) {
@@ -113,15 +123,15 @@ async function fetchAPI(path, cookie, method, data) {
     .join('&');
 
   const options = {
-    hostname: BASE_URL,
+    hostname: API_HOST,
     path: path,
     method: method || 'GET',
     headers: {
       ...HEADERS,
       'Cookie': `__test=${cookie}`,
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Origin': FULL_BASE,
-      'Referer': FULL_BASE + '/',
+      'Origin': API_BASE,
+      'Referer': API_BASE + '/',
       'Content-Length': Buffer.byteLength(postData),
       'Accept-Encoding': 'gzip, deflate, br'
     },
