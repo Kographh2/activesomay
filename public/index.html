@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KOGRAPH ACTIVATOR</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="background-animation">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <h1>KOGRAPH</h1>
+          <span class="subtitle">ACTIVATOR</span>
+        </div>
+      </div>
+      <div class="status-indicator">
+        <span class="pulse"></span>
+        <span class="status-text">ONLINE</span>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="card-grid">
+        <div class="card" id="send-card">
+          <div class="card-header">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <h2>Kirim Link Verifikasi</h2>
+          </div>
+          <div class="card-body">
+            <p class="card-description">Masukkan email untuk mengirim link verifikasi premium Alight Motion.</p>
+            <form id="send-form" class="form">
+              <div class="input-group">
+                <label for="send-email">Email Target</label>
+                <div class="input-wrapper">
+                  <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                  <input type="email" id="send-email" placeholder="user@example.com" required autocomplete="email">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary" id="send-btn">
+                <span class="btn-text">Kirim Link</span>
+                <span class="btn-loader" hidden>
+                  <span class="spinner"></span>
+                  Memproses...
+                </span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="card" id="verify-card">
+          <div class="card-header">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <h2>Verifikasi Magic Link</h2>
+          </div>
+          <div class="card-body">
+            <p class="card-description">Masukkan email dan magic link untuk mengaktifkan lisensi premium.</p>
+            <form id="verify-form" class="form">
+              <div class="input-group">
+                <label for="verify-email">Email Target</label>
+                <div class="input-wrapper">
+                  <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                  <input type="email" id="verify-email" placeholder="user@example.com" required autocomplete="email">
+                </div>
+              </div>
+              <div class="input-group">
+                <label for="verify-link">Magic Link URL</label>
+                <div class="input-wrapper">
+                  <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                  </svg>
+                  <input type="url" id="verify-link" placeholder="https://alight-motion-premium.site.je/verify?token=..." required>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-success" id="verify-btn">
+                <span class="btn-text">Aktifkan Premium</span>
+                <span class="btn-loader" hidden>
+                  <span class="spinner"></span>
+                  Memverifikasi...
+                </span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-section">
+        <div class="info-card">
+          <h3>Cara Penggunaan</h3>
+          <ol class="steps">
+            <li>Masukkan email Anda pada form Kirim Link Verifikasi</li>
+            <li>Klik Kirim Link dan tunggu verifikasi email masuk</li>
+            <li>Buka email dan klik tautan verifikasi</li>
+            <li>Salin magic link URL dari email</li>
+            <li>Paste magic link pada form Verifikasi Magic Link</li>
+            <li>Klik Aktifkan Premium untuk mengaktifkan lisensi</li>
+          </ol>
+        </div>
+        <div class="info-card">
+          <h3>Informasi Sistem</h3>
+          <div class="info-list">
+            <div class="info-item">
+              <span class="info-label">Status</span>
+              <span class="info-value status-online">Online</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Versi</span>
+              <span class="info-value">0.0.1</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">AES Bypass</span>
+              <span class="info-value status-ready">Ready</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">API</span>
+              <span class="info-value">AES-128-CBC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="legal-section" id="faq">
+        <div class="legal-card">
+          <h3>FAQ</h3>
+          <div class="faq-item">
+            <button class="faq-question" type="button">Apa itu KOGRAPH ACTIVATOR?</button>
+            <div class="faq-answer"><p>KOGRAPH ACTIVATOR adalah web app yang membantu proses aktivasi lisensi premium Alight Motion menggunakan verifikasi email dan magic link.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">Apakah aman digunakan?</button>
+            <div class="faq-answer"><p>Penggunaan sepenuhnya tanggung jawab pengguna. Kami hanya menyediakan alat bantu dan tidak menyimpan data pribadi Anda.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">Kenapa verifikasi email dibutuhkan?</button>
+            <div class="faq-answer"><p>Proses aktivasi membutuhkan verifikasi email dan magic link sesuai mekanisme sistem yang digunakan.</p></div>
+          </div>
+        </div>
+
+        <div class="legal-card" id="terms">
+          <h3>Syarat & Ketentuan</h3>
+          <p>Dengan menggunakan aplikasi ini, Anda setuju untuk tidak menyalahgunakannya untuk tujuan ilegal atau melanggar hak pihak ketiga.</p>
+          <p>Kami tidak bertanggung jawab atas penyalahgunaan akun atau dampak yang ditimbulkan.</p>
+        </div>
+
+        <div class="legal-card" id="privacy">
+          <h3>Kebijakan Privasi</h3>
+          <p>Aplikasi ini tidak mengumpulkan atau menyimpan data pribadi secara permanen. Data yang diproses hanya digunakan untuk request aktivasi.</p>
+        </div>
+
+        <div class="legal-card" id="contact">
+          <h3>Kontak</h3>
+          <p>Untuk pertanyaan atau laporan, hubungi developer melalui kanal yang tersedia.</p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="#faq">FAQ</a>
+        <a href="#terms">Syarat & Ketentuan</a>
+        <a href="#privacy">Kebijakan Privasi</a>
+        <a href="#contact">Kontak</a>
+      </div>
+      <p class="footer-copy">KOGRAPH ACTIVATOR v1.0 - Built with amprem v0.0.1</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
