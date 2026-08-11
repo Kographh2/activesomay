@@ -1,6 +1,6 @@
 {
   "name": "kograph-activator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "KOGRAPH ACTIVATOR - Alight Motion Premium Activator Web App",
   "main": "server.js",
   "scripts": {
@@ -9,9 +9,12 @@
     "build": "echo 'No build step required'"
   },
   "dependencies": {
-    "amprem": "^0.0.1",
+    "amprem": "0.0.1",
     "express": "^4.18.2",
     "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "keywords": [
     "alight-motion",
