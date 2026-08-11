@@ -33,18 +33,14 @@ Atau push ke GitHub dan import di Vercel dashboard.
 
 ```
 ├── api/
-│   ├── send_link.py        # Vercel serverless function (send)
-│   ├── verify_link.py      # Vercel serverless function (verify)
-│   └── health.py           # Health check endpoint
+│   └── index.js           # SATU Vercel serverless function (semua endpoint)
 ├── public/
 │   ├── index.html
 │   ├── style.css
 │   └── app.js
-├── amprem_client.py        # Core logic: AES decryption + HTTP client
-├── server.js               # Express backend untuk lokal
-├── vercel.json             # Vercel routing config
-├── requirements.txt        # Python dependencies
-├── package.json            # Node.js dependencies (lokal)
+├── server.js              # Express backend untuk lokal
+├── vercel.json            # Vercel routing config
+├── package.json           # Node.js dependencies
 ├── .gitignore
 ├── README.md
 └── LICENSE
@@ -60,7 +56,7 @@ Atau push ke GitHub dan import di Vercel dashboard.
 
 - **Frontend**: HTML5, CSS3, Vanilla JavaScript
 - **Local Backend**: Express.js + amprem
-- **Vercel Backend**: Python 3.9 + pycryptodome + requests
+- **Vercel Backend**: Node.js serverless function (single `api/index.js`)
 
 ## License
 
